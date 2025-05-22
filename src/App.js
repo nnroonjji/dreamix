@@ -1,56 +1,98 @@
-﻿import React, { useState } from "react";
+﻿// App.js
+import React, { useState } from "react";
 import DreamInput from "./components/DreamInput";
 import DreamResult from "./components/DreamResult";
+import SavedDreams from "./components/SavedDreams";
 
 function App() {
     const [result, setResult] = useState(null);
     const [selectedStyle, setSelectedStyle] = useState("general");
-    const [originalDream, setOriginalDream] = useState("");
+    const [view, setView] = useState("input");
+    const [hasResult, setHasResult] = useState(false);
+    const [dreamImage, setDreamImage] = useState(null);
+    const [imageLoaded, setImageLoaded] = useState(false);
+    const [promptUsed, setPromptUsed] = useState(null); // ✅ 중복 방지용 프롬프트
 
     const handleReset = () => {
         setResult(null);
-        setOriginalDream("");
+        setHasResult(false);
+        setView("input");
+        setDreamImage(null);
+        setImageLoaded(false);
+        setPromptUsed(null);
+    };
+
+    const buttonStyle = {
+        fontSize: "1rem",
+        padding: "0.5rem 1rem",
+        borderRadius: "8px",
+        border: "1px solid #ccc",
+        backgroundColor: "#f5f5f5",
+        cursor: "pointer"
     };
 
     return (
-        <div style={{ fontFamily: "sans-serif", minHeight: "100vh" }}>
-            {!result && (
-                <div style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    height: "100vh",
-                    padding: "2rem",
-                    boxSizing: "border-box"
-                }}>
-                    <h1 style={{
-                        fontSize: "2.2rem",
-                        marginBottom: "1.5rem",
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "0.6rem"
-                    }}>
-                        <span>🌙</span> <span style={{ fontWeight: "bold" }}>DreaMix</span>
+        <div style={{ fontFamily: "sans-serif", minHeight: "100vh", padding: "0" }}>
+            {view === "input" ? (
+                <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "0.6rem" }}>
+                    <div style={{ marginTop: "4rem", marginBottom: "0.5rem" }}>
+                        <h1 style={{ fontSize: "2.4rem", fontWeight: "bold", display: "flex", alignItems: "center", gap: "0.6rem" }}>
+                            <span>🌙</span> <span>DreaMix</span>
+                        </h1>
+                    </div>
+                    <button onClick={() => setView("saved")} style={buttonStyle}>
+                        📁 View Saved Dreams
+                    </button>
+                </div>
+            ) : (
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "1rem 2rem", borderBottom: "1px solid #eee", backgroundColor: "#fafafa" }}>
+                    <h1 style={{ fontSize: "1.8rem", fontWeight: "bold", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                        <span>🌙</span> DreaMix
                     </h1>
+                    {(view === "input" || view === "result") && (
+                        <button onClick={() => setView("saved")} style={buttonStyle}>
+                            📁 View Saved Dreams
+                        </button>
+                    )}
+                    {view === "saved" && (
+                        <button onClick={() => setView(hasResult ? "result" : "input")} style={buttonStyle}>
+                            🔙 {hasResult ? "Back to Dream Result" : "Back to Dream Input"}
+                        </button>
+                    )}
+                </div>
+            )}
 
-                    <div style={{ maxWidth: "600px", width: "100%" }}>
+            {view === "input" && !result && (
+                <div style={{ display: "flex", justifyContent: "center", marginTop: "2rem" }}>
+                    <div style={{ width: "100%", maxWidth: "600px", padding: "1rem" }}>
                         <DreamInput
-                            onResult={setResult}
+                            onResult={(res) => {
+                                setResult(res);
+                                setHasResult(true);
+                                setView("result");
+                                setPromptUsed(res?.["Visual Prompt"]?.Description || null); // ✅ 설정
+                            }}
                             onStyleChange={setSelectedStyle}
-                            onDreamText={setOriginalDream}
                         />
                     </div>
                 </div>
             )}
 
-            {result && (
+            {view === "result" && result && (
                 <DreamResult
                     result={result}
                     selectedStyle={selectedStyle}
-                    originalDream={originalDream}
-                    onReset={handleReset} // 🔁 버튼은 DreamResult 내부에서만 표시됨
+                    onReset={handleReset}
+                    dreamImage={dreamImage}
+                    setDreamImage={setDreamImage}
+                    imageLoaded={imageLoaded}
+                    setImageLoaded={setImageLoaded}
+                    promptUsed={promptUsed} // ✅ 전달
                 />
+            )}
+
+            {view === "saved" && (
+                <SavedDreams />
             )}
         </div>
     );

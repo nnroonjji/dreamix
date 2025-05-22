@@ -2,18 +2,16 @@ import React, { useEffect, useState } from "react";
 import LoadingSpinner from "./LoadingSpinner";
 import ErrorMessage from "./ErrorMessage";
 
-function DreamImage({ prompt }) {
-    const [imageSrc, setImageSrc] = useState(null);
+function DreamImage({ prompt, imageSrc, setImageSrc, imageLoaded, setImageLoaded }) {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        if (!prompt) return;
+        if (!prompt || imageLoaded) return;
 
         const generateImage = async () => {
             setLoading(true);
             setError(null);
-            setImageSrc(null);
 
             try {
                 const response = await fetch("http://localhost:7860/sdapi/v1/txt2img", {
@@ -36,6 +34,7 @@ function DreamImage({ prompt }) {
 
                 if (base64) {
                     setImageSrc(`data:image/png;base64,${base64}`);
+                    setImageLoaded(true);
                 } else {
                     setError("⚠️ 이미지 생성 실패: 응답에 이미지가 포함되어 있지 않습니다.");
                 }
@@ -48,7 +47,7 @@ function DreamImage({ prompt }) {
         };
 
         generateImage();
-    }, [prompt]);
+    }, [prompt, imageLoaded]);
 
     return (
         <div style={{

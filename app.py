@@ -1,5 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+import json
+
 from langchain_community.document_loaders import JSONLoader
 from langchain.text_splitter import CharacterTextSplitter
 from langchain_community.embeddings import OllamaEmbeddings
@@ -43,7 +45,9 @@ You must use this guide to interpret each symbolic word in the dream.
 DO NOT invent meanings — only use the definitions found in the retrieved database.  
 For each symbol, match its meaning according to the selected style ("jungian", "modern", or "general").
 
-Divide the dream into exactly 3 scenes.
+Divide the dream into exactly 3 scenes.  
+⚠️ Each scene must be under a separate key like "Scene 1", "Scene 2", and "Scene 3" — NOT an array.
+
 For each scene, include:
 - Summary: A brief one-line description of what happens in this scene.
 - Symbols: A list of individual symbolic nouns (e.g., "tree", "mirror", "fire")
@@ -52,36 +56,28 @@ For each scene, include:
 
 After the scenes, include:
 - Final Interpretation: A brief summary of the overall meaning.
+- Visual Prompt: {{ "Description": "..." }} ← ONE vivid moment that captures the dream.
 
-Then, extract ONE clear visual moment that captures the dream's core.  
-Return it as a JSON field:
-"Visual Prompt": {{ "Description": "..." }}
+Also, include the original dream input under the key:
+"Raw Dream": "..." ← Copy the full dream text here.
 
 ⚠️ Format your entire response as **valid JSON**.
 ⚠️ Do not wrap the JSON with backticks or add any extra explanation outside the JSON.
-
-Example format:
-{{
-  "Scene 1": {{
-    "Summary": "...",
-    "Symbols": ["..."],
-    "Emotions": ["..."],
-    "Interpretation": "..."
-  }},
-  "Scene 2": {{ ... }},
-  "Scene 3": {{ ... }},
-  "Final Interpretation": "...",
-  "Visual Prompt": {{
-    "Description": "..."
-  }}
-}}
 
 Dream:
 \"\"\"{user_dream}\"\"\"
 """
 
     response = qa.run(prompt)
-    return jsonify({ "response": response })
+
+    try:
+        parsed = json.loads(response)
+    except json.JSONDecodeError:
+        return jsonify({ "response": response })
+
+    parsed["Raw Dream"] = user_dream  # 추가 보정 (이중 안전장치)
+
+    return jsonify({ "response": parsed })
 
 if __name__ == "__main__":
     app.run(port=5000)

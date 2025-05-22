@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import LoadingSpinner from "./LoadingSpinner";
 import ErrorMessage from "./ErrorMessage";
 
-function DreamInput({ onResult, onStyleChange, onDreamText }) {
+function DreamInput({ onResult, onStyleChange }) {
     const [dreamText, setDreamText] = useState("");
     const [style, setStyle] = useState("general");
     const [loading, setLoading] = useState(false);
@@ -16,7 +16,6 @@ function DreamInput({ onResult, onStyleChange, onDreamText }) {
 
         setLoading(true);
         setError(null);
-        onDreamText(dreamText);
 
         try {
             const response = await fetch("http://localhost:5000/interpret", {
@@ -32,24 +31,12 @@ function DreamInput({ onResult, onStyleChange, onDreamText }) {
             const raw = data.response;
 
             try {
-                let cleaned = raw.trim();
-
-                // ⚠️ GPT가 ```json ... ``` 형식으로 보낼 경우 제거
-                if (cleaned.startsWith("```")) {
-                    cleaned = cleaned.replace(/^```(json)?/, "").replace(/```$/, "").trim();
-                }
-
-                // ⚠️ 일부 응답에서 끝 괄호가 하나 누락되는 경우 자동 보완 시도
-                if (!cleaned.endsWith("}")) {
-                    cleaned += "}";
-                }
-
-                const parsed = JSON.parse(cleaned);
-                onResult(parsed);
+              
+                onResult(data.response);
             } catch (err) {
                 console.error("❌ Failed to parse GPT JSON response:", raw);
                 setError("❌ GPT 응답을 JSON으로 해석할 수 없습니다.");
-                onResult({ "Raw Response": raw });  // fallback
+                onResult({ "Raw Response": raw });
             }
         } catch (err) {
             setError("❌ 서버 연결 실패: Flask 서버가 실행 중인지 확인하세요.");
