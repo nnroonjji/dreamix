@@ -1,0 +1,507 @@
+{
+  "mirror": {
+    "j": "reflection of the self and unconscious",
+    "m": "concerns about appearance or self-image",
+    "g": "a symbol of self-reflection"
+  },
+  "water": {
+    "j": "emotions and the unconscious",
+    "m": "reflection of emotional state",
+    "g": "a symbol of emotion or life"
+  },
+  "sea": {
+    "j": "depth of the collective unconscious",
+    "m": "broad emotional state or anxiety",
+    "g": "deep emotion or the unknown"
+  },
+  "river": {
+    "j": "flow of life",
+    "m": "flow of life",
+    "g": "emotional flow or journey"
+  },
+  "stairs": {
+    "j": "transition between conscious and unconscious",
+    "m": "gradual change or growth process",
+    "g": "structure of ascent or descent"
+  },
+  "door": {
+    "j": "entry to a new stage",
+    "m": "decision point",
+    "g": "opportunity or new opening"
+  },
+  "window": {
+    "j": "insight",
+    "m": "seeking a new perspective",
+    "g": "portal between inner and outer"
+  },
+  "house": {
+    "j": "structure of the self",
+    "m": "thoughts about life foundation or security",
+    "g": "foundation or stability"
+  },
+  "room": {
+    "j": "domain of the inner self",
+    "m": "personal space or emotional state",
+    "g": "expression of inner space"
+  },
+  "basement": {
+    "j": "repressed unconscious",
+    "m": "hidden memories or feelings",
+    "g": "secrets or subconscious depths"
+  },
+  "attic": {
+    "j": "storage of memory and soul",
+    "m": "past thoughts or dreams",
+    "g": "past or imagined realms"
+  },
+  "fire": {
+    "j": "purification or destructive energy",
+    "m": "intense desire or conflict",
+    "g": "strong emotion or transformation"
+  },
+  "flame": {
+    "j": "energy for transformation",
+    "m": "drive and ambition",
+    "g": "passion or energy"
+  },
+  "fog": {
+    "j": "veil of the unconscious",
+    "m": "confusion or unclear feelings",
+    "g": "ambiguity or uncertainty"
+  },
+  "cave": {
+    "j": "feminine archetype",
+    "m": "hidden anxiety or unknown depth",
+    "g": "inner search or womb symbol"
+  },
+  "forest": {
+    "j": "journey through the unconscious",
+    "m": "desire for healing or nature",
+    "g": "inner journey or chaos"
+  },
+  "mountain": {
+    "j": "challenge",
+    "m": "personal growth or achievement",
+    "g": "symbol of striving and hardship"
+  },
+  "cliff": {
+    "j": "boundary",
+    "m": "danger",
+    "g": "tension or limits"
+  },
+  "tree": {
+    "j": "vitality",
+    "m": "personal development",
+    "g": "life and growth"
+  },
+  "roots": {
+    "j": "primordial connection",
+    "m": "emotional grounding or past",
+    "g": "connection to origin"
+  },
+  "bird": {
+    "j": "spirit",
+    "m": "freedom or creativity",
+    "g": "soaring thought or freedom"
+  },
+  "snake": {
+    "j": "transformation",
+    "m": "threat or subconscious fear",
+    "g": "change or instinct"
+  },
+  "cat": {
+    "j": "intuition",
+    "m": "independence or sensitivity",
+    "g": "symbol of autonomy"
+  },
+  "dog": {
+    "j": "instinct",
+    "m": "social bonding or comfort",
+    "g": "loyalty or protection"
+  },
+  "horse": {
+    "j": "instinctive energy",
+    "m": "desire for progress or strength",
+    "g": "speed and vitality"
+  },
+  "wolf": {
+    "j": "wildness",
+    "m": "self-defense or independence",
+    "g": "survival and instinct"
+  },
+  "lion": {
+    "j": "primordial strength",
+    "m": "power",
+    "g": "authority and courage"
+  },
+  "bear": {
+    "j": "inner protector",
+    "m": "strength and endurance",
+    "g": "protection or patience"
+  },
+  "butterfly": {
+    "j": "personal transformation",
+    "m": "change or personal growth",
+    "g": "transition or renewal"
+  },
+  "bee": {
+    "j": "collectivity",
+    "m": "cooperation",
+    "g": "order or teamwork"
+  },
+  "spider": {
+    "j": "creative fate",
+    "m": "complex emotions",
+    "g": "caution or intricate planning"
+  },
+  "blood": {
+    "j": "vital force",
+    "m": "pain",
+    "g": "wound or energy symbol"
+  },
+  "snow": {
+    "j": "repression or cleansing",
+    "m": "numbness or blocked emotion",
+    "g": "emotional neutrality"
+  },
+  "rain": {
+    "j": "emotional release",
+    "m": "cleansing or renewal",
+    "g": "letting go or change"
+  },
+  "storm": {
+    "j": "internal turmoil",
+    "m": "expression of stress or anger",
+    "g": "emotional chaos"
+  },
+  "sun": {
+    "j": "consciousness",
+    "m": "energy or achievement",
+    "g": "awareness or power"
+  },
+  "moon": {
+    "j": "emotion",
+    "m": "emotional cycle or mystery",
+    "g": "cycles or femininity"
+  },
+  "star": {
+    "j": "hope",
+    "m": "aspirations or inspiration",
+    "g": "goal or guidance symbol"
+  },
+  "shadow": {
+    "j": "repressed self",
+    "m": "hidden side or conflict",
+    "g": "unacknowledged self"
+  },
+  "ghost": {
+    "j": "remnants of the past",
+    "m": "unresolved feelings or regret",
+    "g": "the past or memory"
+  },
+  "baby": {
+    "j": "new possibility",
+    "m": "new beginning or responsibility",
+    "g": "fresh start or purity"
+  },
+  "old person": {
+    "j": "archetype of wisdom",
+    "m": "advice or self-guidance",
+    "g": "wisdom or experience"
+  },
+  "lover": {
+    "j": "projection of anima/animus",
+    "m": "desire or relationship issue",
+    "g": "intimacy or affection"
+  },
+  "parent": {
+    "j": "authority figure",
+    "m": "family influence or discipline",
+    "g": "care or control"
+  },
+  "death": {
+    "j": "end and rebirth",
+    "m": "change",
+    "g": "symbol of conclusion"
+  },
+  "grave": {
+    "j": "burial of the past",
+    "m": "letting go or acceptance",
+    "g": "closure or past"
+  },
+  "clothes": {
+    "j": "expression of self",
+    "m": "social appearance or role",
+    "g": "representation of identity"
+  },
+  "car": {
+    "j": "direction and control of life",
+    "m": "life path or mobility",
+    "g": "control or independence"
+  },
+  "train": {
+    "j": "predestined life path",
+    "m": "routine or structure",
+    "g": "journey or timing"
+  },
+  "clock": {
+    "j": "time awareness",
+    "m": "time pressure or urgency",
+    "g": "flow of time"
+  },
+  "phone": {
+    "j": "connection to others",
+    "m": "desire for communication",
+    "g": "medium of contact"
+  },
+  "friend": {
+    "j": "mirror of social self",
+    "m": "relationship stress or joy",
+    "g": "social bond"
+  },
+  "playground": {
+    "j": "inner child",
+    "m": "need for joy or freedom",
+    "g": "childhood memory or play"
+  },
+  "whale": {
+    "j": "deep unconscious",
+    "m": "emotional depth and power",
+    "g": "mystery or magnitude"
+  },
+  "night": {
+    "j": "unconscious activation",
+    "m": "anxiety or rest",
+    "g": "darkness or quiet"
+  },
+  "sky": {
+    "j": "spiritual expansion",
+    "m": "perspective or aspiration",
+    "g": "hope or infinite potential"
+  },
+  "studying": {
+    "j": "personal growth",
+    "m": "pressure to achieve",
+    "g": "effort or development"
+  },
+  "falling": {
+    "j": "loss of control",
+    "m": "fear of failure",
+    "g": "danger or instability"
+  },
+  "classroom": {
+    "j": "social learning",
+    "m": "self-evaluation or performance anxiety",
+    "g": "place of instruction"
+  },
+  "school": {
+    "j": "system of development",
+    "m": "personal or social norms",
+    "g": "education or growth"
+  },
+  "book": {
+    "j": "knowledge structure",
+    "m": "information or reflection",
+    "g": "knowledge or record"
+  },
+  "pen": {
+    "j": "tool of expression",
+    "m": "communication or creativity",
+    "g": "expression tool"
+  },
+  "computer": {
+    "j": "self-extension",
+    "m": "overload or connectivity",
+    "g": "technology or function"
+  },
+  "tv": {
+    "j": "projection of collective image",
+    "m": "media overload or escape",
+    "g": "window to reality"
+  },
+  "photo": {
+    "j": "fragment of memory",
+    "m": "nostalgia or identity",
+    "g": "memory symbol"
+  },
+  "bag": {
+    "j": "role or responsibility",
+    "m": "burden or self-worth",
+    "g": "identity or storage"
+  },
+  "shoes": {
+    "j": "direction or progress",
+    "m": "journey or path",
+    "g": "identity or readiness"
+  },
+  "calculator": {
+    "j": "function of logic",
+    "m": "evaluation or decision-making",
+    "g": "precision or analysis"
+  },
+  "uniform": {
+    "j": "internalized norms",
+    "m": "belonging or pressure",
+    "g": "conformity symbol"
+  },
+  "teacher": {
+    "j": "internal guide",
+    "m": "authority or support",
+    "g": "knowledge figure"
+  },
+  "exam": {
+    "j": "performance anxiety",
+    "m": "self-test or pressure",
+    "g": "achievement measure"
+  },
+  "playground (field)": {
+    "j": "publicness or competition",
+    "m": "activity and release",
+    "g": "play or energy outlet"
+  },
+  "surprise": {
+    "j": "sudden change",
+    "m": "startle or emotional reaction",
+    "g": "shock or new input"
+  },
+  "laughter": {
+    "j": "emotional release",
+    "m": "joy or relief",
+    "g": "happiness expression"
+  },
+  "tears": {
+    "j": "emotional cleansing",
+    "m": "sadness or stress",
+    "g": "grief or expression"
+  },
+  "bed": {
+    "j": "inner sanctuary",
+    "m": "need for rest",
+    "g": "safety or rest"
+  },
+  "couch": {
+    "j": "familiarity and comfort",
+    "m": "emotional support",
+    "g": "relaxation"
+  },
+  "food": {
+    "j": "basic desire",
+    "m": "nourishment or craving",
+    "g": "life support"
+  },
+  "restaurant": {
+    "j": "social interaction",
+    "m": "relationship or choice",
+    "g": "gathering place"
+  },
+  "market": {
+    "j": "life transaction",
+    "m": "economic concern",
+    "g": "value or exchange"
+  },
+  "coin": {
+    "j": "value and judgment",
+    "m": "financial anxiety",
+    "g": "symbol of worth"
+  },
+  "wallet": {
+    "j": "self-worth",
+    "m": "protection or value storage",
+    "g": "ownership"
+  },
+  "doorway": {
+    "j": "entry to external world",
+    "m": "transition or boundaries",
+    "g": "portal symbol"
+  },
+  "elevator": {
+    "j": "rise or fall",
+    "m": "change or motion",
+    "g": "transitional state"
+  },
+  "stairwell": {
+    "j": "movement and decision",
+    "m": "rising tension or descent",
+    "g": "structure or passage"
+  },
+  "bus": {
+    "j": "group identity",
+    "m": "daily path or routine",
+    "g": "journey or transition"
+  },
+  "subway": {
+    "j": "collective unconscious",
+    "m": "life flow or social rhythm",
+    "g": "transit or repetition"
+  },
+  "train station": {
+    "j": "point of decision",
+    "m": "transition or planning",
+    "g": "journey moment"
+  },
+  "airplane": {
+    "j": "transcendence",
+    "m": "desire to escape or explore",
+    "g": "movement or ambition"
+  },
+  "airport": {
+    "j": "threshold of change",
+    "m": "readiness for transition",
+    "g": "gateway to future"
+  },
+  "space": {
+    "j": "infinity and projection",
+    "m": "futuristic or unknown",
+    "g": "the unknown"
+  },
+  "robot": {
+    "j": "dehumanization or control",
+    "m": "tech pressure or detachment",
+    "g": "artificiality"
+  },
+  "zoo": {
+    "j": "animal instincts",
+    "m": "containment or curiosity",
+    "g": "controlled wildness"
+  },
+  "amusement park": {
+    "j": "liberation and indulgence",
+    "m": "desire for fun",
+    "g": "escape or play"
+  },
+  "cinema": {
+    "j": "unconscious projection",
+    "m": "observation or fantasy",
+    "g": "narrative symbol"
+  },
+  "concert": {
+    "j": "emotional release",
+    "m": "shared experience",
+    "g": "collective rhythm"
+  },
+  "sound": {
+    "j": "symbol of presence",
+    "m": "emotional trigger",
+    "g": "communication"
+  },
+  "silence": {
+    "j": "repressed emotion",
+    "m": "need for stillness",
+    "g": "symbol of emptiness"
+  },
+  "letter": {
+    "j": "inner message",
+    "m": "communication need",
+    "g": "message or record"
+  },
+  "map": {
+    "j": "self-discovery",
+    "m": "direction-seeking",
+    "g": "guidance"
+  },
+  "compass": {
+    "j": "life orientation",
+    "m": "self-direction",
+    "g": "purpose"
+  }
+}

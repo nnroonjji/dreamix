@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/dreamix/static/css/main.e6c13ad2.css",
+    "main.js": "/dreamix/static/js/main.dc63291a.js",
+    "static/js/453.288825a1.chunk.js": "/dreamix/static/js/453.288825a1.chunk.js",
+    "index.html": "/dreamix/index.html",
+    "main.e6c13ad2.css.map": "/dreamix/static/css/main.e6c13ad2.css.map",
+    "main.dc63291a.js.map": "/dreamix/static/js/main.dc63291a.js.map",
+    "453.288825a1.chunk.js.map": "/dreamix/static/js/453.288825a1.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.dc63291a.js"
+  ]
+}
