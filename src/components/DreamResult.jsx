@@ -20,7 +20,7 @@ function DreamResult({
     const previousPromptRef = useRef(null); // ✅ 중복 생성을 막기 위한 참조
 
     useEffect(() => {
-        fetch("/symbol_data_50.json")
+        fetch("http://localhost:5000/symbol_data_50.json")  // ✅ Flask에서 제공
             .then((res) => res.json())
             .then((data) => {
                 const normalized = {};
@@ -28,6 +28,9 @@ function DreamResult({
                     normalized[key.toLowerCase().trim()] = value;
                 }
                 setSymbolData(normalized);
+            })
+            .catch((err) => {
+                console.error("❌ Failed to load symbol data:", err);
             });
     }, []);
 
@@ -90,7 +93,7 @@ function DreamResult({
                     borderRadius: "10px",
                     marginBottom: "1rem"
                 }}>
-                    <div style={{ fontWeight: "bold", fontSize: "1.05rem", marginBottom: "0.3rem" }}>📝 Describe your dream</div>
+                    <div style={{ fontWeight: "bold", fontSize: "1.05rem", marginBottom: "0.3rem" }}>📝 Your dream</div>
                     <div style={{ fontSize: "0.95rem", lineHeight: "1.4" }}>{result["Raw Dream"]}</div>
                 </div>
             )}

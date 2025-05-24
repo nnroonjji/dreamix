@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 import json
 
@@ -12,7 +12,7 @@ from langchain.chains import RetrievalQA
 app = Flask(__name__)
 CORS(app)
 
-# Load symbol_data_50.json into LangChain's vector store
+# Load symbol data into vector store
 loader = JSONLoader(
     file_path='public/symbol_data_50.json',
     jq_schema='.',
@@ -75,9 +75,15 @@ Dream:
     except json.JSONDecodeError:
         return jsonify({ "response": response })
 
-    parsed["Raw Dream"] = user_dream  # 추가 보정 (이중 안전장치)
+    parsed["Raw Dream"] = user_dream  # Double safe
 
     return jsonify({ "response": parsed })
 
+# ✅ JSON 직접 서빙 라우트 추가
+@app.route("/symbol_data_50.json")
+def serve_symbol_data():
+    return send_from_directory("public", "symbol_data_50.json")
+
 if __name__ == "__main__":
     app.run(port=5000)
+
