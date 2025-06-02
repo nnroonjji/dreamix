@@ -8,6 +8,12 @@ function DreamInput({ onResult, onStyleChange }) {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
+    const styleDescriptions = {
+        jungian: "Looks at dreams as messages from the deep mind using symbols and universal ideas.",
+        modern: "Explains dreams by connecting them to your feelings and daily life.",
+        general: "Gives simple meanings to dream symbols based on common ideas and culture."
+    };
+
     const handleInterpret = async () => {
         if (!dreamText.trim()) {
             setError("Please enter your dream before decoding it.");
@@ -28,18 +34,9 @@ function DreamInput({ onResult, onStyleChange }) {
             });
 
             const data = await response.json();
-            const raw = data.response;
-
-            try {
-              
-                onResult(data.response);
-            } catch (err) {
-                console.error("❌ Failed to parse GPT JSON response:", raw);
-                setError("❌ GPT 응답을 JSON으로 해석할 수 없습니다.");
-                onResult({ "Raw Response": raw });
-            }
+            onResult(data.response);
         } catch (err) {
-            setError("❌ 서버 연결 실패: Flask 서버가 실행 중인지 확인하세요.");
+            setError("❌ Server connection failed. Please check if the Flask server is running.");
             console.error(err);
         }
 
@@ -48,6 +45,7 @@ function DreamInput({ onResult, onStyleChange }) {
 
     return (
         <div>
+            {/* Dream Text Input */}
             <textarea
                 rows="6"
                 style={{
@@ -59,56 +57,80 @@ function DreamInput({ onResult, onStyleChange }) {
                     outline: "none",
                     boxShadow: "0 1px 5px rgba(0,0,0,0.05)",
                     resize: "vertical",
-                    fontFamily: "inherit"
+                    fontFamily: "inherit",
+                    marginBottom: "1.5rem"
                 }}
-                placeholder="Describe your dream in English..."
+                placeholder="Describe your dream ..."
                 value={dreamText}
                 onChange={(e) => setDreamText(e.target.value)}
             />
 
-            {/* 🔮 스타일 선택 */}
+            {/* 🔮 Choose Your Lens */}
+            <div style={{
+                textAlign: "center",
+                marginBottom: "0.6rem",
+                fontWeight: "600",
+                fontSize: "1rem",
+                color: "#fceabb",
+                textShadow: "0 0 5px rgba(255, 255, 255, 0.4)"
+            }}>
+                🔮 Choose your lens 🔮
+            </div>
+
+            {/* Style Selection Buttons */}
             <div style={{
                 display: "flex",
-                alignItems: "center",
                 justifyContent: "center",
-                gap: "1.5rem",
-                flexWrap: "wrap",
-                margin: "1.5rem 0"
+                gap: "1rem",
+                marginBottom: "1rem"
             }}>
-                <label style={{ fontWeight: "600", fontSize: "1rem", display: "flex", alignItems: "center", gap: "0.4rem" }}>
-                    🔮 Choose your lens:
-                </label>
-
                 {["jungian", "modern", "general"].map(option => (
-                    <label key={option} style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "0.4rem",
-                        fontSize: "1rem",
-                        cursor: "pointer"
-                    }}>
-                        <input
-                            type="radio"
-                            value={option}
-                            checked={style === option}
-                            onChange={() => {
-                                setStyle(option);
-                                onStyleChange(option);
-                            }}
-                        />
+                    <button
+                        key={option}
+                        onClick={() => {
+                            setStyle(option);
+                            onStyleChange(option);
+                        }}
+                        style={{
+                            backgroundColor: style === option ? "#857bd1" : "#c5c5c5",
+                            color: style === option ? "#f5f5f5" : "#2c2f4a",
+                            border: "none",
+                            borderRadius: "8px",
+                            padding: "0.4rem 0.8rem",
+                            fontSize: "0.95rem",
+                            fontWeight: "600",
+                            cursor: "pointer",
+                            transition: "all 0.2s ease"
+                        }}
+                    >
                         {option.charAt(0).toUpperCase() + option.slice(1)}
-                    </label>
+                    </button>
                 ))}
             </div>
 
-            {/* 🌙 해석 버튼 */}
+            {/* 📖 Style Description Box */}
+            <div style={{
+                backgroundColor: "#4b4377",
+                borderRadius: "10px",
+                padding: "1rem",
+                maxWidth: "600px",
+                margin: "0 auto 1.5rem",
+                color: "#f5f5f5",
+                fontSize: "0.95rem",
+                textAlign: "center",   // 🌸 가운데 정렬
+                lineHeight: "1.4"
+            }}>
+                <p>{styleDescriptions[style]}</p>
+            </div>
+
+            {/* 🌙 Begin the Dream Reading Button */}
             <div style={{ textAlign: "center", marginTop: "1rem" }}>
                 <button
                     onClick={handleInterpret}
                     disabled={loading}
                     style={{
                         backgroundColor: "#f3f0ff",
-                        border: "1px solid #b9aef2",
+                        border: "none",
                         padding: "0.8rem 1.4rem",
                         borderRadius: "12px",
                         fontSize: "1rem",
@@ -127,7 +149,7 @@ function DreamInput({ onResult, onStyleChange }) {
                 </button>
             </div>
 
-            {/* 💬 에러 메시지 */}
+            {/* Error Message */}
             {error && <ErrorMessage message={error} />}
         </div>
     );

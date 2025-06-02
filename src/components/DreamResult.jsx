@@ -1,4 +1,3 @@
-// DreamResult.jsx
 import React, { useEffect, useState, useRef } from "react";
 import { singularize } from "inflection";
 import DreamImage from "./DreamImage";
@@ -11,7 +10,8 @@ function DreamResult({
     setDreamImage,
     imageLoaded,
     setImageLoaded,
-    promptUsed
+    promptUsed,
+    setView
 }) {
     const [symbolData, setSymbolData] = useState({});
     const [sceneIndex, setSceneIndex] = useState(0);
@@ -21,10 +21,6 @@ function DreamResult({
     const previousPromptRef = useRef(null);
 
     const emotions = ["😊", "😢", "😡", "😱", "😴", "😇"];
-
-    useEffect(() => {
-        console.log("🌙 GPT Full Output (result):", result);
-    }, [result]);
 
     useEffect(() => {
         fetch("http://localhost:5000/symbol_data_50.json")
@@ -92,21 +88,63 @@ function DreamResult({
     };
 
     return (
-        <div style={{ fontFamily: "sans-serif", maxWidth: "1100px", margin: "0 auto", padding: "3rem 2rem" }}>
+        <div style={{ fontFamily: "sans-serif", maxWidth: "1100px", margin: "0 auto", padding: "2rem", color: "black" }}>
+            {/* 🌙 작은 로고 + 버튼 헤더 */}
+            <header style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                marginBottom: "2rem",
+                
+            }}>
+                <div style={{
+                    fontSize: "2.5rem",
+                    fontWeight: "bold",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.5rem",
+                    color: "#FFEFB7",
+                    textShadow: "0 0 5px rgba(255, 239, 183, 0.8)"
+                }}>
+                    <span role="img" aria-label="moon" style={{
+                        fontSize: "2rem",
+                        filter: "drop-shadow(0 0 5px rgba(255, 239, 183, 0.8))"
+                    }}>
+                        🌙
+                    </span>
+                    DreaMix
+                </div>
+                <button
+                    onClick={() => setView("saved")}
+                    style={{
+                        backgroundColor: "#f0f0f0",
+                        border: "1px solid #aaa",
+                        padding: "0.6rem 1.2rem",
+                        borderRadius: "8px",
+                        cursor: "pointer",
+                        fontSize: "1rem"
+                    }}
+                >
+                    📁 View Saved Dreams
+                </button>
+            </header>
+
+            {/* 📝 Dream Content */}
             {result?.["Raw Dream"] && (
                 <div style={{
                     backgroundColor: "#fff8e1",
                     border: "1px solid #ffe0b2",
                     padding: "0.4rem 0.8rem",
                     borderRadius: "10px",
-                    marginBottom: "1rem"
+                    marginBottom: "1.5rem"
                 }}>
                     <div style={{ fontWeight: "bold", fontSize: "1.05rem", marginBottom: "0.3rem" }}>📝 Your dream</div>
                     <div style={{ fontSize: "0.95rem", lineHeight: "1.4" }}>{result["Raw Dream"]}</div>
                 </div>
             )}
 
-            <div style={{ display: "flex", alignItems: "flex-start", gap: "2rem", marginTop: "2rem", flexWrap: "wrap" }}>
+            {/* Scene and Image */}
+            <div style={{ display: "flex", alignItems: "flex-start", gap: "2rem", flexWrap: "wrap" }}>
                 <div style={{ flex: "1 1 60%", maxWidth: "600px" }}>
                     {scenes.length > 0 && (
                         <div style={{
@@ -170,13 +208,35 @@ function DreamResult({
 
                 <div style={{ flex: "1 1 30%", minWidth: "280px" }}>
                     {visualPrompt && (
-                        <DreamImage
-                            prompt={visualPrompt}
-                            imageSrc={dreamImage}
-                            setImageSrc={setDreamImage}
-                            imageLoaded={imageLoaded}
-                            setImageLoaded={setImageLoaded}
-                        />
+                        <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                            <DreamImage
+                                prompt={visualPrompt}
+                                imageSrc={dreamImage}
+                                setImageSrc={setDreamImage}
+                                imageLoaded={imageLoaded}
+                                setImageLoaded={setImageLoaded}
+                            />
+
+                            <button
+                                onClick={() => {
+                                    setImageLoaded(false);
+                                    setDreamImage(null);
+                                }}
+                                style={{
+                                    marginTop: "0.8rem",
+                                    padding: "0.5rem 1rem",
+                                    backgroundColor: "#ffffff",
+                                    border: "1px solid #ccc",
+                                    borderRadius: "8px",
+                                    cursor: "pointer",
+                                    fontSize: "0.9rem",
+                                    display: "block",
+                                    width: "100%"
+                                }}
+                            >
+                                🔄 Regenerate Image
+                            </button>
+                        </div>
                     )}
                 </div>
             </div>

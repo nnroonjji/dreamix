@@ -76,8 +76,8 @@ function SavedDreams() {
     });
 
     return (
-        <div style={{ padding: "2rem", maxWidth: "1000px", margin: "0 auto", fontFamily: "sans-serif" }}>
-            <h1 style={{ textAlign: "center", fontSize: "2rem", marginBottom: "2rem" }}>📚 Saved Dreams</h1>
+        <div style={{ padding: "2rem", maxWidth: "1000px", margin: "0 auto", fontFamily: "sans-serif", color: "black" }}>
+            <h1 style={{ textAlign: "center", fontSize: "3rem", marginBottom: "2rem", color: "white" }}>📚 Saved Dreams</h1>
 
             {/* 캘린더 + 이모티콘: 오른쪽 정렬 */}
             <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "flex-start", gap: "1rem", marginBottom: "2rem" }}>

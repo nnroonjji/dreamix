@@ -32,52 +32,54 @@ function App() {
     };
 
     return (
-        <div style={{ fontFamily: "sans-serif", minHeight: "100vh", padding: "0" }}>
-            {view === "input" ? (
-                <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "0.6rem" }}>
-                    <div style={{ marginTop: "4rem", marginBottom: "0.5rem" }}>
-                        <h1 style={{ fontSize: "2.4rem", fontWeight: "bold", display: "flex", alignItems: "center", gap: "0.6rem" }}>
-                            <span>🌙</span> <span>DreaMix</span>
-                        </h1>
-                    </div>
+        <div style={{
+            fontFamily: "sans-serif",
+            minHeight: "100vh",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",   // 🌙 중앙 정렬
+            backgroundColor: "#2c2f4a",
+            color: "#f5f5f5",
+            padding: "2rem"
+        }}>
+            {/* 헤더 */}
+            {view === "input" && (
+                <div style={{ textAlign: "center", marginBottom: "2rem" }}>
+                    <h1 style={{
+                        fontSize: "3.5rem",
+                        fontWeight: "bold",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "0.6rem",
+                        color: "#fceabb",
+                        textShadow: "0 0 8px rgba(255, 255, 255, 0.4)",
+                        marginLeft: "-20px"
+                    }}>
+                        <span>🌙</span> <span>DreaMix</span>
+                    </h1>
                     <button onClick={() => setView("saved")} style={buttonStyle}>
                         📁 View Saved Dreams
                     </button>
                 </div>
-            ) : (
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "1rem 2rem", borderBottom: "1px solid #eee", backgroundColor: "#fafafa" }}>
-                    <h1 style={{ fontSize: "1.8rem", fontWeight: "bold", display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                        <span>🌙</span> DreaMix
-                    </h1>
-                    {(view === "input" || view === "result") && (
-                        <button onClick={() => setView("saved")} style={buttonStyle}>
-                            📁 View Saved Dreams
-                        </button>
-                    )}
-                    {view === "saved" && (
-                        <button onClick={() => setView(hasResult ? "result" : "input")} style={buttonStyle}>
-                            🔙 {hasResult ? "Back to Dream Result" : "Back to Dream Input"}
-                        </button>
-                    )}
-                </div>
             )}
 
+            {/* DreamInput 화면 */}
             {view === "input" && !result && (
-                <div style={{ display: "flex", justifyContent: "center", marginTop: "2rem" }}>
-                    <div style={{ width: "100%", maxWidth: "600px", padding: "1rem" }}>
-                        <DreamInput
-                            onResult={(res) => {
-                                setResult(res);
-                                setHasResult(true);
-                                setView("result");
-                                setPromptUsed(res?.["Visual Prompt"]?.Description || null); // ✅ 설정
-                            }}
-                            onStyleChange={setSelectedStyle}
-                        />
-                    </div>
+                <div style={{ width: "100%", maxWidth: "600px" }}>
+                    <DreamInput
+                        onResult={(res) => {
+                            setResult(res);
+                            setHasResult(true);
+                            setView("result");
+                            setPromptUsed(res?.["Visual Prompt"]?.Description || null); // ✅ 설정
+                        }}
+                        onStyleChange={setSelectedStyle}
+                    />
                 </div>
             )}
 
+            {/* DreamResult 화면 */}
             {view === "result" && result && (
                 <DreamResult
                     result={result}
@@ -88,11 +90,20 @@ function App() {
                     imageLoaded={imageLoaded}
                     setImageLoaded={setImageLoaded}
                     promptUsed={promptUsed} // ✅ 전달
+                    setView={setView}
                 />
             )}
 
+            {/* SavedDreams 화면 */}
             {view === "saved" && (
-                <SavedDreams />
+                <div style={{ width: "100%", maxWidth: "900px", padding: "1rem" }}>
+                    <SavedDreams />
+                    <div style={{ textAlign: "center", marginTop: "2rem" }}>
+                        <button onClick={() => setView(hasResult ? "result" : "input")} style={buttonStyle}>
+                            🔙 {hasResult ? "Back to Dream Result" : "Back to Dream Input"}
+                        </button>
+                    </div>
+                </div>
             )}
         </div>
     );
