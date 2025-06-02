@@ -55,8 +55,9 @@ For each scene, include:
 - Interpretation: A 1–2 sentence interpretation based on the selected style AND symbol definitions.
 
 After the scenes, include:
-- Final Interpretation: A brief summary of the overall meaning.
-- Visual Prompt: {{ "Description": "..." }} ← ONE vivid moment that captures the dream.
+- Final Interpretation: A comprehensive summary integrating all scenes into a cohesive understanding. It must reflect the **dream content and extracted symbols**, and use **neutral pronouns (they/them)**.
+
+- Visual Prompt: {{ "Description": "..." }} ← Select **ONE vivid, cinematic moment** from the dream. The visual prompt must focus on **a single key moment** that captures the dream's essence, not a summary of the entire dream.  Also, focus on the **key symbolic elements** rather than excessive details. Avoid describing person and facial expressions.
 
 Also, include the original dream input under the key:
 "Raw Dream": "..." ← Copy the full dream text here.

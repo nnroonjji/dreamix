@@ -11,16 +11,23 @@ function DreamResult({
     setDreamImage,
     imageLoaded,
     setImageLoaded,
-    promptUsed // ✅ 추가
+    promptUsed
 }) {
     const [symbolData, setSymbolData] = useState({});
     const [sceneIndex, setSceneIndex] = useState(0);
     const [showModal, setShowModal] = useState(false);
     const [commentInput, setCommentInput] = useState("");
-    const previousPromptRef = useRef(null); // ✅ 중복 생성을 막기 위한 참조
+    const [emotion, setEmotion] = useState("");
+    const previousPromptRef = useRef(null);
+
+    const emotions = ["😊", "😢", "😡", "😱", "😴", "😇"];
 
     useEffect(() => {
-        fetch("http://localhost:5000/symbol_data_50.json")  // ✅ Flask에서 제공
+        console.log("🌙 GPT Full Output (result):", result);
+    }, [result]);
+
+    useEffect(() => {
+        fetch("http://localhost:5000/symbol_data_50.json")
             .then((res) => res.json())
             .then((data) => {
                 const normalized = {};
@@ -43,7 +50,6 @@ function DreamResult({
     const visualPrompt = result?.["Visual Prompt"]?.Description || null;
     const finalInterpretation = result?.["Final Interpretation"];
 
-    // ✅ 이미지 중복 생성 방지 로직
     useEffect(() => {
         if (
             visualPrompt &&
@@ -74,12 +80,14 @@ function DreamResult({
             rawDream: result["Raw Dream"] || "Unknown",
             final: result["Final Interpretation"] || "No interpretation",
             image: dreamImage || "",
-            comment: commentInput.trim()
+            comment: commentInput.trim(),
+            emotion: emotion || ""
         };
         stored.push(newDream);
         localStorage.setItem("dreams", JSON.stringify(stored));
         setShowModal(false);
         setCommentInput("");
+        setEmotion("");
         alert("💾 Dream saved successfully!");
     };
 
@@ -215,6 +223,28 @@ function DreamResult({
                             onChange={(e) => setCommentInput(e.target.value)}
                             placeholder="Write your thoughts about this dream..."
                         />
+
+                        <div style={{ marginTop: "1rem" }}>
+                            <b>Select your emotion:</b><br />
+                            {emotions.map((emo, i) => (
+                                <button
+                                    key={i}
+                                    onClick={() => setEmotion(emo)}
+                                    style={{
+                                        fontSize: "1.4rem",
+                                        marginRight: "0.5rem",
+                                        padding: "0.3rem 0.5rem",
+                                        backgroundColor: emotion === emo ? "#d1c4e9" : "#f0f0f0",
+                                        border: "1px solid #ccc",
+                                        borderRadius: "6px",
+                                        cursor: "pointer"
+                                    }}
+                                >
+                                    {emo}
+                                </button>
+                            ))}
+                        </div>
+
                         <div style={{ marginTop: "1rem", textAlign: "right" }}>
                             <button onClick={() => setShowModal(false)} style={{ marginRight: "1rem", padding: "0.5rem 1rem" }}>Cancel</button>
                             <button onClick={confirmSave} style={{ backgroundColor: "#81c784", color: "white", padding: "0.5rem 1.2rem", border: "none", borderRadius: "6px" }}>Save</button>
