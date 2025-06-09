@@ -11,7 +11,8 @@ function DreamResult({
     imageLoaded,
     setImageLoaded,
     promptUsed,
-    setView
+    setView,
+    setResult
 }) {
     const [symbolData, setSymbolData] = useState({});
     const [sceneIndex, setSceneIndex] = useState(0);
@@ -67,6 +68,26 @@ function DreamResult({
         });
     };
 
+    const regenerateVisualPrompt = async () => {
+        try {
+            const response = await fetch("http://localhost:5000/interpret", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    dream: result["Raw Dream"],
+                    style: selectedStyle
+                })
+            });
+
+            const data = await response.json();
+            setResult(data.response);      // 새로운 해석 + visual prompt
+            setImageLoaded(false);
+            setDreamImage(null);
+        } catch (err) {
+            console.error("Error regenerating visual prompt:", err);
+        }
+    };
+
     const handleSave = () => setShowModal(true);
 
     const confirmSave = () => {
@@ -94,8 +115,7 @@ function DreamResult({
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
-                marginBottom: "2rem",
-                
+                marginBottom: "2rem"
             }}>
                 <div style={{
                     fontSize: "2.5rem",
@@ -218,10 +238,7 @@ function DreamResult({
                             />
 
                             <button
-                                onClick={() => {
-                                    setImageLoaded(false);
-                                    setDreamImage(null);
-                                }}
+                                onClick={regenerateVisualPrompt}
                                 style={{
                                     marginTop: "0.8rem",
                                     padding: "0.5rem 1rem",
@@ -241,6 +258,7 @@ function DreamResult({
                 </div>
             </div>
 
+            {/* Reset & Save Buttons */}
             <div style={{ textAlign: "center", marginTop: "2.5rem" }}>
                 <button onClick={onReset} style={{
                     backgroundColor: "#f0f0f0",
@@ -265,6 +283,7 @@ function DreamResult({
                 </button>
             </div>
 
+            {/* Modal */}
             {showModal && (
                 <div style={{
                     position: "fixed", top: 0, left: 0, width: "100%", height: "100%",
